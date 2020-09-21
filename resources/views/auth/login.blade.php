@@ -3,15 +3,15 @@
 @section('title', 'Login')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 col-sm-4">
   <div class="card">
-    <p class="card-header" style="background-color: #ff5d0d; color: white;">Login</h5>
+    <p class="card-header" style="background-color: #ff5d0d; color: white;">Login</p>
       <div class="card-body">
-        <form action="" method="post">
+        <form action="{{ route('auth') }}" method="post">
           {{ csrf_field() }}
           <div class="form-group">
             <label for="email">Email: </label>
-            <input type="text" name="email" id="email" class="form-control" width="18rem">
+            <input type="email" name="email" id="email" class="form-control" width="18rem">
           </div>
           <div class="form-group">
             <label for="password">Password: </label>

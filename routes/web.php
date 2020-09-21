@@ -22,6 +22,7 @@ Route::get('/find', function(Request $request) {
     dd($request->all());
 })->name('search');
 
-Route::get('/login', function(){
-    return view('login');
-});
+Route::get('/login', 'LoginController@GetLoginPage');
+Route::post('/auth', 'LoginController@PostLoginCred')->name('auth');
+Route::get('/register', 'RegisterController@GetRegisterPage');
+Route::post('/regist', 'RegisterController@PostRegisterData')->name('regist');
