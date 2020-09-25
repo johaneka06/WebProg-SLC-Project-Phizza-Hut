@@ -1,5 +1,6 @@
 <?php
 
+use App\Pizza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $array = ['Andi', 'Carie', 'Vivian', 'Clouu'];
-    return view('index', ['names' => $array]);
+    $pizzas = Pizza::get();
+    return view('index', ['pizzas' => $pizzas]);
 });
 
 Route::get('/find', function(Request $request) {
@@ -27,3 +28,7 @@ Route::get('/login', 'LoginController@GetLoginPage');
 Route::post('/auth', 'LoginController@PostLoginCred')->name('auth');
 Route::get('/register', 'RegisterController@GetRegisterPage');
 Route::post('/regist', 'RegisterController@PostRegisterData')->name('regist');
+
+Route::get('/pizza/add', 'AddPizzaController@GetInsertPage');
+
+Route::post('/pizza/insert', 'AddPizzaController@Store')->name('insertPizza');

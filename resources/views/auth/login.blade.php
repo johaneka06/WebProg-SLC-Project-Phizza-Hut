@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-5 col-sm-4">
   <div class="card">
-    <p class="card-header" style="background-color: #ff5d0d; color: white;">Login</p>
+    <p class="card-header" style="background-color: #EA2000; color: white;">Login</p>
       <div class="card-body">
         <form action="{{ route('auth') }}" method="post">
           {{ csrf_field() }}

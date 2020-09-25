@@ -6,7 +6,7 @@
 
 <div class="container mt-5 col-sm-5">
   <div class="card">
-    <p class="card-header" style="background-color: #ff5d0d; color: white;">Register</p>
+    <p class="card-header" style="background-color: #EA2000; color: white;">Register</p>
     @if($errors->any())
     @foreach($errors->all() as $error)
     <div class="alert alert-danger" role="alert">

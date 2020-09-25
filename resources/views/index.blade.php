@@ -24,13 +24,17 @@
   <!-- Pizza card -->
   <div class="container mt-4">
     <div class="row">
-      <!-- @foreach ($names as $name) -->
+      @foreach ($pizzas as $pizza)
       <div class="col">
         <div class="card mb-4" style="width: 18rem;">
-          
+          <img src="{{ asset('/pizza/'.$pizza->img_loc) }}" alt="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title mb-3">{{ $pizza->name }}</h5>
+            <p>{{ $pizza->price }}</p>
+          </div>
         </div>
       </div>
-      <!-- @endforeach -->
+      @endforeach
     </div>
   </div>
 
