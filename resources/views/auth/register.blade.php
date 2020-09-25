@@ -7,6 +7,13 @@
 <div class="container mt-5 col-sm-5">
   <div class="card">
     <p class="card-header" style="background-color: #ff5d0d; color: white;">Register</p>
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    <div class="alert alert-danger" role="alert">
+      {{ $error }}
+    </div>
+    @endforeach
+    @endif
     <div class="card-body">
       <form action="{{ route('regist') }}" method="post">
         {{ csrf_field() }}
@@ -32,7 +39,7 @@
         </div>
         <div class="form-group">
           <label for="phone_no">Phone Number: </label>
-          <input type="number" name="phone_no" id="phone_no" class="form-control">
+          <input type="text" name="phone" id="phone" class="form-control">
         </div>
         <div class="form-inline">
           <label>Gender: </label>
@@ -50,5 +57,8 @@
     </div>
   </div>
 </div>
+
+<script src="{{ asset('js/bootstrap.js') }}">
+</script>
 
 @endsection

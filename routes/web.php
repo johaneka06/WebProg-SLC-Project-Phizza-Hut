@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $array = ['Andi', 'Carie', 'Vivian', 'Clouu'];
+    return view('index', ['names' => $array]);
 });
 
 Route::get('/find', function(Request $request) {
