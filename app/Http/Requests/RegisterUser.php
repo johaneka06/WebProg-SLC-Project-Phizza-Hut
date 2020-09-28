@@ -25,7 +25,7 @@ class RegisterUser extends FormRequest
     {
         return [
             'username' => 'required',
-            'email' => 'required|email|unique',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'confirm' => 'required|min:6|same:password',
             'address' => 'required',
@@ -50,7 +50,8 @@ class RegisterUser extends FormRequest
     public function messages()
     {
         return [
-            'required' => ':attribute is required'
+            'required' => ':attribute is required',
+            'unique' => ':attribute already exist. Please choose different one'
         ];
     }
 }

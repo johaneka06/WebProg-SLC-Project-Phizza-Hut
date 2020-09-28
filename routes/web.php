@@ -29,6 +29,9 @@ Route::post('/auth', 'LoginController@PostLoginCred')->name('auth');
 Route::get('/register', 'RegisterController@GetRegisterPage');
 Route::post('/regist', 'RegisterController@PostRegisterData')->name('regist');
 
+
+Route::get('/logout', 'LoginController@logout');
+
 Route::get('/pizza/add', 'AddPizzaController@GetInsertPage');
 
 Route::post('/pizza/insert', 'AddPizzaController@Store')->name('insertPizza');
