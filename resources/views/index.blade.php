@@ -25,17 +25,19 @@
   <div class="container mt-4">
     <div class="row">
       @foreach ($pizzas as $pizza)
-      <div class="col">
-        <div class="card mb-4" style="width: 18rem;">
-          <img src="{{ asset('/pizza/'.$pizza->img_loc) }}" alt="" class="card-img-top">
+      <div class="col-sm-4">
+        <div class="card mb-4 mr-3" style="width: 18rem;">
+          <img src="{{ asset('storage/'.$pizza->img_loc) }}" alt="{{ $pizza->name }}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title mb-3">{{ $pizza->name }}</h5>
             <p>{{ $pizza->price }}</p>
           </div>
         </div>
       </div>
+
       @endforeach
     </div>
+    {{ $pizzas->links() }}
   </div>
 
   <!-- End of pizza card -->

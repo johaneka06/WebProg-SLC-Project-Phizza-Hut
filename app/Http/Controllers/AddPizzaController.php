@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PizzaRequest;
 use App\Pizza;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AddPizzaController extends Controller
 {
@@ -15,14 +16,14 @@ class AddPizzaController extends Controller
     public function Store(PizzaRequest $request) {
         $pizza = $request->file('img');
 
-        $file_name = $pizza->getClientOriginalName();
-        $pizza->move('pizza', $file_name);
+        $path = Storage::disk('local')->put('public', $pizza, 'public');
+        $path = basename($path);
 
         Pizza::create([
-            'name' => $file_name,
+            'name' => $request->name,
             'price' => (int) $request->price,
             'desc' => $request->desc,
-            'img_loc' => $file_name
+            'img_loc' => $path
         ]);
 
         return redirect('/');

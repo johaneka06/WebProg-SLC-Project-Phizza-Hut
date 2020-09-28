@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $pizzas = Pizza::get();
+    $pizzas = Pizza::paginate(6);
     return view('index', ['pizzas' => $pizzas]);
 });
 
