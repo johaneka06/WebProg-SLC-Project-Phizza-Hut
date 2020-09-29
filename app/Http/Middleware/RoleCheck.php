@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AdminRoleCheck
+class RoleCheck
 {
     /**
      * Handle an incoming request.

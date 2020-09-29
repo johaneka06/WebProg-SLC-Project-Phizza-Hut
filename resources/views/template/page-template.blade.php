@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #EA2000;">
     <div class="container">
       <a class="navbar-brand" href="{{ url('/') }}">Phizza Hut</a>
@@ -32,6 +31,7 @@
     </div>
   </nav>
   <!-- Content of each pages goes here -->
+  @include('sweetalert::alert')
   @yield('content')
 
   <script src="{{ asset('js/bootstrap.js') }}"></script>
