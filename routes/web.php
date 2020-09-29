@@ -16,23 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@getIndex');
-
 Route::get('/pizza/detail/id/{id}', 'PagesController@getDetail');
-
-Route::get('/find', function(Request $request) {
-    dd($request->all());
-})->name('search');
+Route::get('/find', 'PagesController@search')->name('search');
 
 Route::get('/login', 'LoginController@GetLoginPage');
 Route::post('/auth', 'LoginController@PostLoginCred')->name('auth');
 Route::get('/register', 'RegisterController@GetRegisterPage');
 Route::post('/regist', 'RegisterController@PostRegisterData')->name('regist');
 
+Route::middleware(['role:Admin'])->group(function() {
+    Route::get('/pizza/add', 'AddPizzaController@GetInsertPage');
+    Route::post('/pizza/insert', 'AddPizzaController@Store')->name('insertPizza');
+});
 
-Route::post('/addtocart/{id}', 'TransactionController@addToCart')->name('addToCart');
+Route::middleware(['role:Member'])->group(function(){
+    Route::post('/addtocart/{id}', 'TransactionController@addToCart')->name('addToCart');
+});
+
 
 Route::get('/logout', 'LoginController@logout');
 
-Route::get('/pizza/add', 'AddPizzaController@GetInsertPage')->middleware('role:Admin');
-
-Route::post('/pizza/insert', 'AddPizzaController@Store')->name('insertPizza');

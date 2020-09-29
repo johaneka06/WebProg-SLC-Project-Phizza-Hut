@@ -18,4 +18,9 @@ class PagesController extends Controller
         $pizza = Pizza::where('id', '=', $id)->get();
         return view('pizza/detail', ['pizza' => $pizza[0]]);
     }
+
+    public function search(Request $request)
+    {
+        dd($request->all());
+    }
 }
