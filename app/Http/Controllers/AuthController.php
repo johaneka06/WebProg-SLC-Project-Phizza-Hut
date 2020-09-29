@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterUser;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-    public function GetLoginPage()
-    {
-        return view('auth/login');
-    }
-
     public function PostLoginCred(Request $request)
     {
         
@@ -35,5 +33,23 @@ class LoginController extends Controller
         Auth::logout();
         if(Cookie::get('email') != null) Cookie::queue(Cookie::forget('email'));
         return redirect('/');
+    }
+
+    public function PostRegisterData(RegisterUser $request)
+    {
+        $validated = $request->validated();
+
+        $newUser = new User();
+        $newUser->username = $validated['username'];
+        $newUser->email = $validated['email'];
+        $newUser->password = bcrypt($validated['password']);
+        $newUser->address = $validated['address'];
+        $newUser->phone_no = $validated['phone'];
+        $newUser->gender = $validated['gender'];
+        $newUser->role = "Member";
+        $newUser->remember_token = Str::random(32);
+
+        $newUser->save();
+        
     }
 }

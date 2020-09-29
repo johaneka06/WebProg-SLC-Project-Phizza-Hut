@@ -19,6 +19,16 @@ class PagesController extends Controller
         return view('pizza/detail', ['pizza' => $pizza[0]]);
     }
 
+    public function GetLoginPage()
+    {
+        return view('auth/login');
+    }
+
+    public function GetRegisterPage()
+    {
+        return view('auth/register');
+    }
+
     public function search(Request $request)
     {
         dd($request->all());
