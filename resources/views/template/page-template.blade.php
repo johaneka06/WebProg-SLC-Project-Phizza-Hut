@@ -19,10 +19,10 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
           @if(!Auth::check())
-          <a class="nav-link active" href="{{ url('/login') }}">Login</a>
+          <a class="nav-link active" href="{{ url('/login') }}" style="border-right: 1px solid white;">Login</a>
           <a class="nav-link active" href="{{ url('/register') }}">Register</a>
           @elseif(Auth::user()->role == 'Admin')
-          <a class="nav-link active" href="{{ url('/pizza/add') }}">Add Pizza</a>
+          <a class="nav-link active" href="{{ url('/pizza/add') }}" style="border-right: 1px solid white;">Add Pizza</a>
           @endif
           @if(Auth::check())
           <a class="nav-link active" href="{{ url('/logout') }}">Logout</a>
