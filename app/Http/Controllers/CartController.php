@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
@@ -12,7 +13,12 @@ class CartController extends Controller
     public function getCartItems()
     {
         $user = Auth::user();
-        $items = Cart::where('userId', '=', $user->id)->get();
+        //Use query builder for easier join
+        $items = DB::table('carts')
+            ->join('pizzas', 'carts.pizzaId', '=', 'pizzas.id')
+            ->where('userId', '=', $user->id)
+            ->get();
+        
         return view('transaction/cart', ['items' => $items]);
     }
 

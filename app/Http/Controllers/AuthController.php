@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -51,5 +52,7 @@ class AuthController extends Controller
 
         $newUser->save();
         
+        Alert::success('Registration Success', 'Your account has been created. Please login');
+        return redirect('/login');
     }
 }

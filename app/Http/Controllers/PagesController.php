@@ -15,8 +15,8 @@ class PagesController extends Controller
 
     public function getDetail($id)
     {
-        $pizza = Pizza::where('id', '=', $id)->get();
-        return view('pizza/detail', ['pizza' => $pizza[0]]);
+        $pizza = Pizza::where('id', '=', $id)->first();
+        return view('pizza/detail', ['pizza' => $pizza]);
     }
 
     public function GetLoginPage()

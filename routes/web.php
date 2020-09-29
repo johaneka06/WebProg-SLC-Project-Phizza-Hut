@@ -31,6 +31,7 @@ Route::middleware(['role:Admin', 'auth'])->group(function() {
 
 Route::middleware(['role:Member', 'auth'])->group(function(){
     Route::post('/addtocart/{id}', 'CartController@addToCart')->name('addToCart');
+    Route::get('/cart', 'CartController@getCartItems');
 });
 
 

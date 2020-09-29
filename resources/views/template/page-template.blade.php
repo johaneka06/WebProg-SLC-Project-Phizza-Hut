@@ -22,6 +22,8 @@
           <a class="nav-link active" href="{{ url('/register') }}">Register</a>
           @elseif(Auth::user()->role == 'Admin')
           <a class="nav-link active" href="{{ url('/pizza/add') }}" style="border-right: 1px solid white;">Add Pizza</a>
+          @elseif(Auth::user()->role == 'Member')
+          <a class="nav-link active" href="{{ url('/cart') }}" style="border-right: 1px solid white;">View Cart</a>
           @endif
           @if(Auth::check())
           <a class="nav-link active" href="{{ url('/logout') }}">Logout</a>
