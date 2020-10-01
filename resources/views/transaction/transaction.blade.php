@@ -7,11 +7,11 @@
 
 @section('child-content')
 @foreach($transactions as $transaction)
-<div class="card mb-4">
+<div class="card mb-3">
   @if($loop->iteration % 2 == 0)
-  <a href="/transaction/{{$transaction->id}}" style="text-decoration: none; color: red;">
+  <a href="/transaction/{{$transaction->userId}}/detail/{{$transaction->id}}" style="text-decoration: none; color: red;">
   @elseif($loop->iteration % 2 == 1)
-  <a href="/transaction/{{$transaction->id}}" style="text-decoration: none; color: white; background-color: #EA2000;">
+  <a href="/transaction/{{$transaction->userId}}/detail/{{$transaction->id}}" style="text-decoration: none; color: white; background-color: #EA2000;">
   @endif
     <div class="card-header">
       <p>Transaction at {{ $transaction->created_at }}</p>

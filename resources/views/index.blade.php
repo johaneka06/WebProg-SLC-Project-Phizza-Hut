@@ -42,7 +42,7 @@
           <!-- If admin, then show update and delete button -->
           @if(Auth::check() && Auth::user()->role == 'Admin')
           <div class="mb-3 ml-2">
-            <a href="#" class="btn btn-primary">Update Pizza</a>
+            <a href="{{ url('/pizza/'.$pizza->id.'/edit/') }}" class="btn btn-primary">Update Pizza</a>
             <a href="#" class="btn btn-danger">Delete Pizza</a>
           </div>
           @endif

@@ -55,7 +55,7 @@ class CartController extends Controller
 
 
         Alert::success('Success', 'Success adding items to cart');
-        return redirect('/');
+        return redirect('/cart');
     }
 
     public function deleteCartItem($id) {

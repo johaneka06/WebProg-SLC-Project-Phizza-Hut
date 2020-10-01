@@ -36,10 +36,16 @@ Route::middleware(['guest'])->group(function() {
 
 //Route below is accessible for admin only. Not accessible for guest and/or member. If member or guest try to access this, then it'll redirect to login page
 Route::middleware(['role:Admin', 'auth'])->group(function() {
-    Route::get('/pizza/add', 'AddPizzaController@GetInsertPage');
-    Route::post('/pizza/insert', 'AddPizzaController@Store')->name('insertPizza');
+    Route::get('/pizza/add', 'PizzaController@GetInsertPage');
+    Route::post('/pizza/insert', 'PizzaController@Store')->name('insertPizza');
     Route::get('/users/all', 'PagesController@getAllUser');
     Route::get('/transaction/all', 'TransactionController@getAllTransaction');
+    Route::get('/pizza/{id}/edit', 'PizzaController@editPizza');
+    Route::post('/pizza/{id}/edit/send', 'PizzaController@update');
+    Route::get('/pizza/{id}/delete/confirmation', 'PizzaController@confirmation');
+    Route::get('/pizza/{id}/delete', 'PizzaController@deletePizza');
+    Route::get('/users/all', 'UserController@getUserPage');
+    
 });
 
 //Route below is accessible for member only. If admin or guest try to access, then it'll redirect to login page
@@ -50,8 +56,12 @@ Route::middleware(['role:Member', 'auth'])->group(function(){
     Route::post('/cart/update/{id}', 'CartController@updateCartItem')->name('updateCart');
     Route::get('/checkout/{userId}', 'CartController@Checkout');
     Route::get('/transaction', 'TransactionController@userTransaction');
+    Route::get('/transaction/{userId}/detail/{id}', 'TransactionController@detailTransaction');
 });
 
 //Route for authenticated user only.
-Route::get('/logout', 'AuthController@logout')->middleware('auth');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/transaction/{userId}/detail/{id}', 'TransactionController@detailTransaction');
+    Route::get('/logout', 'AuthController@logout');
+});
 
