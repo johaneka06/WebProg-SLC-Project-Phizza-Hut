@@ -33,4 +33,9 @@ class PagesController extends Controller
     {
         dd($request->all());
     }
+
+    public function getAllUser()
+    {
+        
+    }
 }

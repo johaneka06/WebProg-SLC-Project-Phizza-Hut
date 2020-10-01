@@ -15,7 +15,7 @@
       <div class="col-sm-8">
         <p><strong>{{ $item->name }}</strong></p>
         <p class="text-muted">Rp. {{ number_format($item->price, 2, ',', '.') }}</p>
-        <form action="{{ url('/cart/update/'.Auth::user()->id.'/pizza/'.$item->pizzaId) }}" method="post" class="form-group">
+        <form action="{{ url('/cart/update/'.$item->id) }}" method="post" class="form-group">
           {{ csrf_field() }}
           <div class="form-inline">
             <p>Quantity: </p>
@@ -23,7 +23,7 @@
           </div>
           <div class="mt-3">
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ url('/cart/delete/'.Auth::user()->id.'/pizza/'.$item->pizzaId) }}" class="btn btn-danger">Delete</a>
+            <a href="{{ url('/cart/delete/'.$item->id) }}" class="btn btn-danger">Delete</a>
           </div>
         </form>
       </div>

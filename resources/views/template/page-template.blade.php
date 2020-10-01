@@ -21,9 +21,10 @@
           <a class="nav-link active" href="{{ url('/login') }}" style="border-right: 1px solid white;">Login</a>
           <a class="nav-link active" href="{{ url('/register') }}">Register</a>
           @elseif(Auth::user()->role == 'Admin')
-          <a class="nav-link active" href="{{ url('/users/all') }}" style="border-right: 1px solid white;">View All User</a>
           <a class="nav-link active" href="{{ url('/transaction/all') }}" style="border-right: 1px solid white;">View All User Transaction</a>
-          <a class="nav-link active" href="{{ url('/pizza/add') }}" style="border-right: 1px solid white;">Add Pizza</a>
+          <a class="nav-link active" href="{{ url('/users/all') }}" style="border-right: 1px solid white;">View All User</a>
+          <!-- Update pizza -->
+          <!-- Delete pizza -->
           @elseif(Auth::user()->role == 'Member')
           <a class="nav-link active" href="{{ url('/transaction') }}" style="border-right: 1px solid white;">View Transaction History</a>
           <a class="nav-link active" href="{{ url('/cart') }}" style="border-right: 1px solid white;">View Cart</a>

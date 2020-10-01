@@ -19,6 +19,7 @@ class CartController extends Controller
         $items = DB::table('carts')
             ->join('pizzas', 'carts.pizzaId', '=', 'pizzas.id')
             ->where('userId', '=', $user->id)
+            ->select('carts.*', 'pizzas.name', 'pizzas.price', 'pizzas.img_loc')
             ->get();
 
         return view('transaction/cart', ['items' => $items]);
@@ -57,16 +58,16 @@ class CartController extends Controller
         return redirect('/');
     }
 
-    public function deleteCartItem($userId, $pizzaId) {
-        $item = Cart::where('userId', '=', $userId)->where('pizzaId', '=', $pizzaId)->delete();
+    public function deleteCartItem($id) {
+        $item = Cart::where('id', '=', $id)->delete();
 
         Alert::success('Delete success', 'Item has been deleted.');
 
         return redirect('/cart');
     }
 
-    public function updateCartItem(Request $request, $userId, $pizzaId) {
-        $item = Cart::where('userId', '=', $userId)->where('pizzaId', '=', $pizzaId)->first();
+    public function updateCartItem(Request $request, $id) {
+        $item = Cart::where('id', '=', $id)->first();
         
         $item->qty = $request->qty;
         $item->updated_at = now();
