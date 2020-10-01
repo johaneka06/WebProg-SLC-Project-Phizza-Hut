@@ -1,6 +1,7 @@
 @extends('template/pizza')
 @section('title', 'Transaction at '.e($transactions[0]->created_at))
 @section('child-content')
+<h3 class="text-center mb-3">Transaction Detail for Transaction at {{ $transactions[0]->created_at }}</h3>
 @foreach($transactions as $transaction)
 <div class="card mb-4">
   <div class="row">

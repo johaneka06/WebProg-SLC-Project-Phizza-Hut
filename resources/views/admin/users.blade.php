@@ -5,7 +5,7 @@
   <div class="row">
     @foreach($users as $user)
     <div class="col-sm-4">
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header" style="background-color: #EA2000; color: white;">User ID: {{ $user->id }}</div>
         <div class="card-body">
           <p>Username: {{ $user->username }}</p>

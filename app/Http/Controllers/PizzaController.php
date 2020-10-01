@@ -28,6 +28,8 @@ class PizzaController extends Controller
             'desc' => $request['desc'],
             'img_loc' => $path
         ]);
+        
+        Alert::success('Insert', 'Success create pizza');
 
         return redirect('/');
     }
@@ -41,6 +43,7 @@ class PizzaController extends Controller
     public function update(PizzaRequest $request, $id)
     {
         $request = $request->validated();
+        
         $img = $request['img'];
         $path = Storage::disk('local')->put('public', $img, 'public');
         $path = basename($path);
@@ -53,6 +56,8 @@ class PizzaController extends Controller
         $pizza->img_loc = $path;
 
         $pizza->save();
+
+        Alert::success('Edit Pizza', 'Success Edit Pizza');
 
         return redirect('/');
     }
@@ -69,7 +74,7 @@ class PizzaController extends Controller
         Pizza::where('id', '=', $id)->delete();
 
         Alert::success('Delete Success', 'Item has been deleted.');
-        
+
         return redirect('/');
     }
 }

@@ -30,7 +30,7 @@
     <div class="row">
       <!-- Loop for each pizzas in database -->
       @foreach ($pizzas as $pizza)
-      <div class="col-sm-4">
+      <div class="col-sm-4 mb-4">
         <form class="card mr-3">
           <a href="{{ url('/pizza/detail/id/'.$pizza->id) }}" style="width: 20rem; color: black; text-decoration: none;">
             <img src="{{ asset('storage/'.$pizza->img_loc) }}" alt="{{ $pizza->name }}" class="card-img-top">
@@ -43,7 +43,7 @@
           @if(Auth::check() && Auth::user()->role == 'Admin')
           <div class="mb-3 ml-2">
             <a href="{{ url('/pizza/'.$pizza->id.'/edit/') }}" class="btn btn-primary">Update Pizza</a>
-            <a href="#" class="btn btn-danger">Delete Pizza</a>
+            <a href="{{ url('/pizza/'.$pizza->id.'/delete/confirmation') }}" class="btn btn-danger">Delete Pizza</a>
           </div>
           @endif
           <!-- End if -->

@@ -4,6 +4,8 @@
 
 @section('child-content')
 
+<h3 class="text-center">Carts</h3>
+
 @if(count($items) > 0)
 @foreach($items as $item)
 <div class="card mb-3">

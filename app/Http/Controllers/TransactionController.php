@@ -7,6 +7,7 @@ use App\Header_Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransactionController extends Controller
 {
@@ -24,6 +25,11 @@ class TransactionController extends Controller
     {
         $userId = Auth::user()->id;
         $transactions = Header_Transaction::where('userId', '=', $userId)->get();
+        if(count($transactions) == 0) {
+            Alert::info("No Transaction", "You don't have any transactions");
+            return redirect('/');
+        }
+
         return view('transaction/transaction', ['transactions' => $transactions]);
     }
 
