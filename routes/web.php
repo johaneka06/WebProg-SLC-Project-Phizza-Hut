@@ -32,6 +32,8 @@ Route::middleware(['role:Admin', 'auth'])->group(function() {
 Route::middleware(['role:Member', 'auth'])->group(function(){
     Route::post('/addtocart/{id}', 'CartController@addToCart')->name('addToCart');
     Route::get('/cart', 'CartController@getCartItems');
+    Route::get('/cart/delete/{userId}/pizza/{pizzaId}', 'CartController@deleteCartItem');
+    Route::post('/cart/update/{userId}/pizza/{pizzaId}', 'CartController@updateCartItem')->name('updateCart');
 });
 
 
