@@ -31,7 +31,7 @@
   </div>
 </div>
 @endforeach
-<a href="" class="ml-5 text-center btn btn-secondary mb-5 justify-content-center">Check out</a>
+<a href="{{ url('/checkout/'.Auth::user()->id) }}" class="ml-5 text-center btn btn-secondary mb-5 justify-content-center">Check out</a>
 
 @else
 <h3 class="text-center">You've no item in your cart</h3>

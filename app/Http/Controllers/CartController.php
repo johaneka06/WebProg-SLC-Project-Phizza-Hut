@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Detail_Transaction;
+use App\Header_Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -73,5 +75,27 @@ class CartController extends Controller
         Alert::success('Update', 'Success update selected item');
 
         return redirect('/cart');
+    }
+
+    public function checkout($userId)
+    {
+        $items = Cart::where('userId', '=', $userId)->get();
+
+        $header = new Header_Transaction();
+        $header->userId = $userId;
+        $header->save();
+        $header->refresh();
+
+        foreach ($items as $item) {
+            $detail = new Detail_Transaction();
+            $detail->transactionId = $header->id;
+            $detail->pizzaId = $item->pizzaId;
+            $detail->qty = $item->qty;
+            $detail->save();
+            Cart::where('userId', '=', $userId)->where('pizzaId', '=', $item->pizzaId)->delete();
+        }
+
+        Alert::success('Success', 'Success for checkout');
+        return redirect('/');
     }
 }
