@@ -12,13 +12,25 @@ class Users_table_seed extends Seeder
      */
     public function run()
     {
-        DB::table("users")->insert([
+        DB::table("users")->insert(
+            [
             'username' => 'JohnDoe001',
             'email' => 'johndoe001@domain.com',
             'password' => bcrypt('JohnDoe'),
             'phone_no' => '081123456789',
             'address' => 'Kemanggisan',
-            'gender' => 'male'
-        ]);
+            'gender' => 'male',
+            'role' => 'Member'
+            ],
+            [
+                'username' => 'JohnDoe002',
+                'email' => 'johndoe002@domain.com',
+                'password' => bcrypt('JohnDoe'),
+                'phone_no' => '081987654321',
+                'address' => 'Kemanggisan',
+                'gender' => 'male',
+                'role' => 'member'
+            ]
+        );
     }
 }
