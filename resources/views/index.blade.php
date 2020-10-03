@@ -22,10 +22,19 @@
     @else
     <a href="/pizza/add" class="btn btn-secondary">Add Pizza</a>
     @endif
+
+    @if($errors->any())
+    <div class="alert alert-danger mt-3">
+    @foreach($errors->all() as $error)
+    {{ $error }}
+    @endforeach
+    </div>
+    @endif
   </div>
   <!-- End of search bar -->
 
   <!-- Pizza card -->
+  @if(!$errors->any())
   <div class="container mt-4">
     <div class="row">
       <!-- Loop for each pizzas in database -->
@@ -54,6 +63,7 @@
     </div>
     {{ $pizzas->links() }}
   </div>
+  @endif
 
   <!-- End of pizza card -->
 </div>

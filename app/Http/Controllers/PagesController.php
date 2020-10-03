@@ -32,7 +32,8 @@ class PagesController extends Controller
     public function search(Request $request)
     {
         $results = Pizza::where('name', 'like', '%'.$request->search.'%')->paginate(6);
-    
+        if(count($results) == 0) return view('index')->withErrors('Search '.$request->search.' return no products');
+
         return view('index', ['pizzas' => $results]);
     }
 }
