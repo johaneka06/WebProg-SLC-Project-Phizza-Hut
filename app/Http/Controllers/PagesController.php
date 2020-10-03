@@ -31,11 +31,8 @@ class PagesController extends Controller
 
     public function search(Request $request)
     {
-        dd($request->all());
-    }
-
-    public function getAllUser()
-    {
-        
+        $results = Pizza::where('name', 'like', '%'.$request->search.'%')->paginate(6);
+    
+        return view('index', ['pizzas' => $results]);
     }
 }
