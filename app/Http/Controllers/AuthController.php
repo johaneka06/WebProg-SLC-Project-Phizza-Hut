@@ -14,8 +14,9 @@ class AuthController extends Controller
 {
     public function PostLoginCred(Request $request)
     {
-        
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        $remember = ($request->has('remember_me') ? true : false);
+
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember))
         {
             $cookie = new Cookie();
             if($request->rememberme == 'on') {
