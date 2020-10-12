@@ -9,7 +9,12 @@
     <h3><strong>{{ $pizza->name }}</strong></h3>
     <p>{{ $pizza->desc }}</p>
     <p class="mt-4">Rp. {{ number_format($pizza->price, 2, ',', '.') }}</p>
-    <a href="{{ url('/pizza/'.$pizza->id.'/delete') }}" class="btn btn-danger mt-3">Delete</a>
+    <form action="{{ url('/pizza/'.$pizza->id.'/delete') }}" method="post" class="mt-3">
+      {{ csrf_field() }}
+      @method('DELETE')
+      <button class="btn btn-danger">Delete</button>
+    </form>
+    <!-- <a href="{{ url('/pizza/'.$pizza->id.'/delete') }}" class="btn btn-danger mt-3">Delete</a> -->
     <p><small class="text-muted">*After you click delete, this item will be deleted. This action cannot be undone. Please be certain.</small></p>
   </div>
 </div>

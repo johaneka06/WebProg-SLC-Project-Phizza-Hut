@@ -17,17 +17,20 @@
       <div class="col-sm-8">
         <p><strong>{{ $item->name }}</strong></p>
         <p class="text-muted">Rp. {{ number_format($item->price, 2, ',', '.') }}</p>
-        <form action="{{ url('/cart/update/'.$item->id) }}" method="post" class="form-group">
+        <!-- Update form -->
+        <form action="{{ url('/cart/update/'.$item->id) }}" method="post" class="form-group" id="update">
           {{ csrf_field() }}
+          @method('PUT')
           <div class="form-inline">
             <p>Quantity: </p>
             <input type="number" name="qty" id="qty" value="{{ $item->qty }}" class="form-control ml-3">
           </div>
           <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ url('/cart/delete/'.$item->id) }}" class="btn btn-danger">Delete</a>
+            <button type="submit" class="btn btn-primary" value="Update">Update</button>
+            <a href="{{ url('/cart/delete/'.$item->id) }}" class="btn btn-danger">Remove</a>
           </div>
         </form>
+        <!-- End update form -->
       </div>
     </div>
   </div>

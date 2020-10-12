@@ -20,7 +20,7 @@
       <button type="submit" class="btn btn-primary ml-3">Search</button>
     </form>
     @else
-    <a href="/pizza/add" class="btn btn-secondary">Add Pizza</a>
+    <a href="/pizza/insert" class="btn btn-secondary">Add Pizza</a>
     @endif
 
     @if($errors->any())
@@ -52,7 +52,7 @@
           @if(Auth::check() && Auth::user()->role == 'Admin')
           <div class="mb-3 ml-2">
             <a href="{{ url('/pizza/'.$pizza->id.'/edit/') }}" class="btn btn-primary">Update Pizza</a>
-            <a href="{{ url('/pizza/'.$pizza->id.'/delete/confirmation') }}" class="btn btn-danger">Delete Pizza</a>
+            <a href="{{ url('/pizza/'.$pizza->id.'/delete') }}" class="btn btn-danger">Delete Pizza</a>
           </div>
           @endif
           <!-- End if -->

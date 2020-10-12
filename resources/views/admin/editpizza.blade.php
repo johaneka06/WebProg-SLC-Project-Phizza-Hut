@@ -14,8 +14,9 @@
     </div>
     @endforeach
     @endif
-    <form action="{{ url('pizza/'. $pizza->id .'/edit/send') }}" method="post" class="form-group" enctype="multipart/form-data">
+    <form action="{{ url('pizza/'. $pizza->id .'/edit') }}" method="post" class="form-group" enctype="multipart/form-data">
       {{ csrf_field() }}
+      @method('PUT')
       <div class="row form-inline mt-3">
         <label for="name" class="d-flex justify-content-end col-sm-3">Pizza Name: </label>
         <input type="text" name="name" id="name" class="ml-2 col-sm-7 form-control" placeholder="Pizza Name" value="{{ $pizza->name }}">

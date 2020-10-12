@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pizza;
+use App\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -35,5 +36,11 @@ class PagesController extends Controller
         if(count($results) == 0) return view('index')->withErrors('Search '.$request->search.' return no products');
 
         return view('index', ['pizzas' => $results]);
+    }
+
+    public function getUserPage()
+    {
+        $users = User::get();
+        return view('admin/users', ['users' => $users]);
     }
 }

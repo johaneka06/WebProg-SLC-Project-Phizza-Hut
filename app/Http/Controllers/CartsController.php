@@ -10,14 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class CartController extends Controller
+class CartsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getCartItems()
     {
         $user = Auth::user();
         //Use query builder for easier join
@@ -30,24 +25,7 @@ class CartController extends Controller
         return view('transaction/cart', ['items' => $items]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $id)
+    public function addToCart(Request $request, $id)
     {
         $request = $request->validate(
             [
@@ -75,41 +53,20 @@ class CartController extends Controller
             $item->save();
         }
 
+
         Alert::success('Success', 'Success adding items to cart');
         return redirect('/cart');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function deleteCartItem($id) {
+        $item = Cart::where('id', '=', $id)->delete();
+
+        Alert::success('Delete success', 'Item has been deleted.');
+
+        return redirect('/cart');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+    public function updateCartItem(Request $request, $id) {
         $item = Cart::where('id', '=', $id)->first();
         
         $item->qty = $request->qty;
@@ -120,28 +77,6 @@ class CartController extends Controller
 
         return redirect('/cart');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $item = Cart::where('id', '=', $id)->delete();
-
-        Alert::success('Delete success', 'Item has been deleted.');
-
-        return redirect('/cart');
-    }
-
-    /**
-     * Checkout all items and remove the specified resource from db.
-     * 
-     * @param int $userId
-     * 
-     */
 
     public function checkout($userId)
     {
